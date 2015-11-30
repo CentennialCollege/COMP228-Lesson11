@@ -7,7 +7,7 @@ import java.sql.SQLException;
 // CONFIGURATION UTILITY CLASS
 public class DBConfig {
 	// PRIVATE CONSTANTS
-	private static final String USERNAME = "thoams";
+	private static final String USERNAME = "thomas";
 	private static final String PASSWORD = "123456";
 	private static final String CONN_STRING = "jdbc:mysql://localhost/moviedb";
 
