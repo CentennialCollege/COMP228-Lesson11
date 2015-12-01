@@ -78,11 +78,59 @@ public class MovieListController {
 		}
 	}
 	
-	
 	//INSERT ONE Row
+	public static boolean insertRow(Movie movie) throws Exception {
+		String SQLQuery = "INSERT into movie_list " +
+	                      "(name, description, release_date, rating, genre) " +
+				          "VALUES (?, ?, ?, ?, ?)";
+		
+		ResultSet keys = null;
+		try(
+			Connection connection = DBConfig.getConnection();
+			PreparedStatement statement = connection.prepareStatement(SQLQuery, Statement.RETURN_GENERATED_KEYS);
+			){
+			
+			statement.setString(1, movie.getName());
+			statement.setString(2, movie.getDescription());
+			statement.setDate(3, movie.getReleaseDate());
+			statement.setDouble(4, movie.getRating());
+			statement.setString(5, movie.getGenre());
+			
+			//get the number of return rows
+			int affected = statement.executeUpdate();
+			if(affected == 1) {
+				keys = statement.getGeneratedKeys();
+				keys.next();
+				int newKey = keys.getInt(1);
+				movie.setId(newKey);
+			} else {
+				System.err.println("No Rows Affected");
+			}
+			
+			
+		} catch(SQLException exception) {
+			DBConfig.displayException(exception);
+			return false;
+		} finally {
+			if(keys != null) {
+				keys.close();
+			}
+		}
+		
+		return true;
+	}
 	
 	//UPDATE ONE Row
 	
 	//DELETE ONE Row
 
 }
+
+
+
+
+
+
+
+
+

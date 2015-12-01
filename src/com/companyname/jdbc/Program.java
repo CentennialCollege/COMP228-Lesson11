@@ -15,6 +15,7 @@ public class Program {
 		//MovieListController.displayAllRows();
 		
 		//READ
+		/*
 		System.out.println("______________________________________");
 		System.out.println("Read a Row of Data");
 		System.out.println("______________________________________");
@@ -31,6 +32,7 @@ public class Program {
 			System.out.println("Movie Rating: " + readMovie.getRating());
 			System.out.println("Movie Genre: " + readMovie.getGenre());
 		} // end READ
+		*/
 
 	} 
 
