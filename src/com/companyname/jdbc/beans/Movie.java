@@ -15,8 +15,8 @@ public class Movie {
 	private String _genre;
 	
 	// PUBLIC PROPERTIES +++++++++++++++++++++++++++++++
-	public int get_id() {
-		return _id;
+	public int getId() {
+		return this._id;
 	}
 	
 	public void setId(int id) {
@@ -51,7 +51,7 @@ public class Movie {
 		return this._rating;
 	}
 	
-	public void set_rating(double rating) {
+	public void setRating(double rating) {
 		this._rating = rating;
 	}
 	
@@ -59,7 +59,7 @@ public class Movie {
 		return this._genre;
 	}
 	
-	public void set_genre(String genre) {
+	public void setGenre(String genre) {
 		this._genre = genre;
 	}
 	

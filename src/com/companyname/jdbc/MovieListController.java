@@ -2,10 +2,13 @@ package com.companyname.jdbc;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+
+import com.companyname.jdbc.beans.Movie;
 
 // Controller class for our Movie Model - Java Bean
 public class MovieListController {
@@ -41,6 +44,40 @@ public class MovieListController {
 	} // End of displayAllRows
 	
 	//READ from ONE Row
+	public static Movie getRow(int id) throws SQLException {
+		String SQLQuery = "SELECT * FROM movie_list WHERE id = ?";
+		ResultSet resultSet = null;
+		
+		try(
+			Connection connection = DBConfig.getConnection();
+			PreparedStatement statement = connection.prepareStatement(SQLQuery);
+		   ) {
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			
+			//check to see if we received any data
+			if(resultSet.next()) {
+				Movie movie =  new Movie();
+				movie.setId(id);
+				movie.setName(resultSet.getString("name"));
+				movie.setDescription(resultSet.getString("description"));
+				movie.setReleaseDate(resultSet.getDate("release_date"));
+				movie.setRating(resultSet.getDouble("rating"));
+				movie.setGenre(resultSet.getString("genre"));
+				return movie;
+			} else {
+				return null;
+			}
+		} catch(SQLException exception) {
+			DBConfig.displayException(exception);
+			return null;
+		} finally {
+			if(resultSet != null) {
+				resultSet.close();
+			}
+		}
+	}
+	
 	
 	//INSERT ONE Row
 	
