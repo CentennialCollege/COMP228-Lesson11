@@ -3,6 +3,7 @@ package com.companyname.jdbc.beans;
 import java.sql.Date;
 
 // MOVIE MODEL - JAVA BEAN
+// We can also call this our Database Schema
 
 public class Movie {
 	// PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++
