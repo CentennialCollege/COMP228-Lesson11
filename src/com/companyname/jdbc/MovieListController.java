@@ -152,11 +152,31 @@ public class MovieListController {
 			} 
 			
 		} // end of Update
-	
-	
-	
+
 	//DELETE ONE Row
-	
+	public static boolean deleteRow(int id) throws Exception {
+		String SQLQuery = "DELETE from movie_list WHERE id = ?";
+		
+		try(
+		   Connection connection = DBConfig.getConnection();
+		   PreparedStatement statement = connection.prepareStatement(SQLQuery);
+		   ) {
+			
+			statement.setInt(1, id);
+			int affected = statement.executeUpdate();
+			
+			if(affected == 1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch(SQLException exception) {
+			DBConfig.displayException(exception);
+			return false;
+		}
+		
+	}
 	
 	}  // End of MovieListController
 	

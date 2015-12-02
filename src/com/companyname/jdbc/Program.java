@@ -62,6 +62,7 @@ public class Program {
 		*/
 		
 		// UPDATE
+		/*
 		System.out.println("______________________________________");
 		System.out.println("Update a Row of Data");
 		System.out.println("______________________________________");
@@ -83,8 +84,24 @@ public class Program {
 		} catch (Exception exception) {
 			System.err.println(exception);
 		} // end of update
+		*/
 		
+		//DELETE
+		System.out.println("______________________________________");
+		System.out.println("Delete a Row of Data");
+		System.out.println("______________________________________");
 		
+		int deleteId = InputHelper.getIntegerInput("Select a row to delete: ");
+		
+		try {
+			if(MovieListController.deleteRow(deleteId)) {
+				System.out.println("Row " + deleteId + " was successfully deleted");
+			} else {
+				System.err.println("Nothing to Delete");
+			}
+		} catch (Exception exception) {
+			System.err.println(exception);
+		} // end delete
 		
 		
 	} 
