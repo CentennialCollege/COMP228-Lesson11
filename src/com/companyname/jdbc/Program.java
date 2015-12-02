@@ -36,6 +36,7 @@ public class Program {
 		*/
 		
 		//INSERT or "CREATE"
+		/*
 		System.out.println("______________________________________");
 		System.out.println("Insert a Row of Data");
 		System.out.println("______________________________________");
@@ -58,7 +59,34 @@ public class Program {
 		} catch (Exception exception) {
 			System.err.println("Invalid Input: " + exception);
 		} // End of Insert
-
+		*/
+		
+		// UPDATE
+		System.out.println("______________________________________");
+		System.out.println("Update a Row of Data");
+		System.out.println("______________________________________");
+		int movieId = InputHelper.getIntegerInput("Select a row to update: ");
+		
+		Movie updateMovie = MovieListController.getRow(movieId);
+		if(updateMovie == null) {
+			System.err.println("Row not found");
+			return;
+		}
+		
+		Double updateRating = InputHelper.getDoubleInput("Enter a new Movie Rating: ");
+		updateMovie.setRating(updateRating);
+		
+		try {
+			if(MovieListController.updateRow(updateMovie)) {
+				System.out.println("Row " + movieId + " was successfully updated");
+			}
+		} catch (Exception exception) {
+			System.err.println(exception);
+		} // end of update
+		
+		
+		
+		
 	} 
 
 }

@@ -118,13 +118,49 @@ public class MovieListController {
 		}
 		
 		return true;
-	}
-	
+	} // end of Insert one Row
+		
 	//UPDATE ONE Row
+	public static boolean updateRow(Movie movie) throws Exception {
+			
+			String SQLQuery = "UPDATE movie_list SET " + 
+			                  "name = ?, description = ?, release_date = ?, rating = ?, genre = ?" +
+					          "WHERE id = ?";
+			
+			try(
+				Connection connection = DBConfig.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SQLQuery);
+			   ) {
+			
+				statement.setString(1, movie.getName());
+				statement.setString(2, movie.getDescription());
+				statement.setDate(3, movie.getReleaseDate());
+				statement.setDouble(4, movie.getRating());
+				statement.setString(5, movie.getGenre());
+				statement.setInt(6, movie.getId());
+				
+				int affected = statement.executeUpdate();
+				if(affected == 1) {
+					return true;
+				} else {
+					return false;
+				}
+				
+			} catch (SQLException exception) {
+				DBConfig.displayException(exception);
+				return false;
+			} 
+			
+		} // end of Update
+	
+	
 	
 	//DELETE ONE Row
+	
+	
+	}  // End of MovieListController
+	
 
-}
 
 
 
